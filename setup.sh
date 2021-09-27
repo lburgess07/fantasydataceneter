@@ -1,3 +1,6 @@
+export PORT=443
+
+
 mkdir -p ~/.streamlit/
 
 echo "\
