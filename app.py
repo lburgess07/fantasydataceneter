@@ -1,5 +1,5 @@
-import fantasy_webapp
-import rushing_webapp
+import fantasy
+import rushing
 import streamlit as st
 
 ###### Initialization ######
@@ -17,8 +17,8 @@ if 'year' not in st.session_state:
     st.session_state['year'] = 2021
 
 PAGES = {
-    "Fantasy": fantasy_webapp,
-    "Rushing": rushing_webapp
+    "Fantasy": fantasy,
+    "Rushing": rushing
 }
 
 st.sidebar.title('Navigation')
