@@ -1,3 +1,5 @@
+rm -rf ~/.streamlit/config.toml
+
 mkdir -p ~/.streamlit/
 
 echo "\
