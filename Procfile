@@ -1,1 +1,1 @@
-web: streamlit run --server.port 443 app.py
+web: streamlit run app.py
