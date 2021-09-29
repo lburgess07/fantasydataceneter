@@ -30,10 +30,6 @@ selected_year = st.sidebar.selectbox('Year', list(reversed(range(1990,2021 + 1))
 
 col1, col2 = st.beta_columns(2)
 
-numItemsOptions = [5, 10, 20, 50, 100, 500, 1000]
-#col1.slider("# of Entries:", min_value=1, max_value=200, step=5, key='num_items')
-col1.selectbox('# of Entries', numItemsOptions, key='num_items')
-
 col2.markdown("""
 **Data source:** [pro-football-reference.com](https://www.pro-football-reference.com/).
 """)

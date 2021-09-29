@@ -47,10 +47,12 @@ def app():
     #df_selected_team = df_selected_team.reset_index(0, drop= True)
 
     out = st.dataframe(df_selected_team, height=utils.rowsToHeight(num_items))
-    out.height = 10
 
     st.markdown(utils.filedownload(df_selected_team), unsafe_allow_html=True)
 
     # Heatmap
     if st.button('Intercorrelation Heatmap'):
         utils.compose_heatmap(df_selected_team)
+    
+    numItemsOptions = [5, 10, 20, 50, 100, 500, 1000]
+    col1.selectbox('# of Entries', numItemsOptions, key='num_items')
