@@ -54,5 +54,7 @@ def app():
     if st.button('Intercorrelation Heatmap'):
         utils.compose_heatmap(df_selected_team)
     
+    col1, col2 = st.beta_columns(2)
+
     numItemsOptions = [5, 10, 20, 50, 100, 500, 1000]
     col1.selectbox('# of Entries', numItemsOptions, key='num_items')
