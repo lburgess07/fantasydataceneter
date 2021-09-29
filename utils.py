@@ -34,19 +34,29 @@ def filedownload(df):
 
 def compose_heatmap(df):
     import os
+    import tempfile
     st.header('Intercorrelation Matrix Heatmap')
-    df.to_csv('output.csv',index=False)
-    df = pd.read_csv('output.csv')
+    # generate tempfile
+    with tempfile.TemporaryFile() as f:
+        df.to_csv(f,index=False)
+        df = pd.read_csv(f)
 
-    corr = df.corr()
-    mask = np.zeros_like(corr)
-    mask[np.triu_indices_from(mask)] = True
-    with sns.axes_style("white"):
-        f, ax = plt.subplots(figsize=(7, 5))
-        ax = sns.heatmap(corr, mask=mask, vmax=1, square=True)
-    st.pyplot(f)
-    os.remove('output.csv')
+        corr = df.corr()
+        mask = np.zeros_like(corr)
+        mask[np.triu_indices_from(mask)] = True
+        with sns.axes_style("white"):
+            f, ax = plt.subplots(figsize=(7, 5))
+            ax = sns.heatmap(corr, mask=mask, vmax=1, square=True)
+        st.pyplot(f)
+        #os.remove('output.csv')
 
-#@st.cache
+@st.cache
 def rowsToHeight(rows:int):
     return int(rows * 28) # each row is 30 px
+
+def initializeSession():
+    # Configure view options session state
+    if 'num_items' not in st.session_state:
+        st.session_state['num_items'] = 10 #default to 10
+    if 'year' not in st.session_state:
+        st.session_state['year'] = 2021
