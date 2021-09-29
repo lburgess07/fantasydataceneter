@@ -37,9 +37,9 @@ def compose_heatmap(df):
     import tempfile
     st.header('Intercorrelation Matrix Heatmap')
     # generate tempfile
-    with tempfile.TemporaryFile() as f:
+    with tempfile.NamedTemporaryFile() as f:
         df.to_csv(f,index=False)
-        df = pd.read_csv(f)
+        df = pd.read_csv(f.name)
 
         corr = df.corr()
         mask = np.zeros_like(corr)
@@ -48,7 +48,6 @@ def compose_heatmap(df):
             f, ax = plt.subplots(figsize=(7, 5))
             ax = sns.heatmap(corr, mask=mask, vmax=1, square=True)
         st.pyplot(f)
-        #os.remove('output.csv')
 
 @st.cache
 def rowsToHeight(rows:int):
